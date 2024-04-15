@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web App</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Update Remedy Data </h1>
+        <form id="dataForm" method="GET" action="" class="form-container">
+            <div class="form-group">
+                <input type="hidden" id="fetchedData" name="fetchedData">
+                <input type="text" id="INCIDENT_ID" name="INCIDENT_ID" placeholder="Incident ID">
+                <input type="text" id="COMPANY" name="COMPANY" placeholder="Company">
+                <input type="text" id="ORGANIZATION" name="ORGANIZATION" placeholder="Organization">
+                <input type="text" id="DEPARTMENT" name="DEPARTMENT" placeholder="Department">
+                <input type="text" id="CONTACT" name="CONTACT" placeholder="Contact">
+                <input type="text" id="SUMMARY" name="SUMMARY" placeholder="Summary">
+                <input type="text" id="AUTHORIZATION_GRP" name="AUTHORIZATION_GRP" placeholder="Authorization Group">
+                <input type="text" id="SERVICE" name="SERVICE" placeholder="Service">
+                <input type="text" id="CI" name="CI" placeholder="CI(Caps)">
+                <!-- <input type="text" id="INCIDENT_TYPE" name="INCIDENT_TYPE" placeholder="Incident Type"> -->
+                <select id="INCIDENT_TYPE" name="INCIDENT_TYPE">
+                    <option value="" disabled selected>Incident Type</option>
+                    <option value="user service restoration">user service restoration</option>
+                    <option value="user service request">user service request</option>
+                    <option value="service improvement">service improvement</option>
+                    <option value="infrastructure event">infrastructure event</option>
+                </select>
+                <!-- <input type="text" id="REPORTED_SOURCE" name="REPORTED_SOURCE" placeholder="Reported Source"> -->
+                <select id="REPORTED_SOURCE" name="REPORTED_SOURCE">
+                    <option value="" disabled selected>Reported Source</option>
+                    <option value="automation">automation</option>
+                    <option value="email">email</option>
+                    <option value="phone">phone</option>
+                    <option value="self service">self service</option>
+                    <option value="event management">event management</option>
+                    <option value="chat">chat</option>
+                    <option value="instant message">instant message</option>
+                    <option value="e bonding">e bonding</option>
+                </select>
+                <input type="text" id="ASSIGNED_GROUP" name="ASSIGNED_GROUP" placeholder="Assigned Group">
+                <input type="text" id="ASSIGNEE" name="ASSIGNEE" placeholder="Assignee">
+                <input type="text" id="VENDOR_GROUP" name="VENDOR_GROUP" placeholder="Vendor Group">
+                <input type="text" id="VENDOR_TICKET_NUMBER" name="VENDOR_TICKET_NUMBER" placeholder="Vendor Ticket Number">
+                <!-- <input type="text" id="STATUS" name="STATUS" placeholder="Status"> -->
+                <select id="STATUS" name="STATUS">
+                    <option value="" disabled selected>Status</option>
+                    <option value="new">new</option>
+                    <option value="assigned">assigned</option>
+                    <option value="in progress">in progress</option>
+                    <option value="pending">pending</option>
+                    <option value="resolved">resolved</option>
+                    <option value="closed">closed</option>
+                </select>
+                <input type="text" id="STATUS_REASON" name="STATUS_REASON" placeholder="Status Reason">
+                <!-- <input type="text" id="PRIORITY" name="PRIORITY" placeholder="Priority"> -->
+                <select id="PRIORITY" name="PRIORITY" >
+                    <option value="" disabled selected>Priority</option>
+                    <option value="p1">P1</option>
+                    <option value="p2">P2</option>
+                    <option value="p3">P3</option>
+                    <option value="p4">P4</option>
+                </select>
+                <input type="text" id="CREATION_DATE" name="CREATION_DATE" placeholder="Creation Date">
+                <input type="text" id="OPEN_DURATION" name="OPEN_DURATION" placeholder="Open Duration">
+                <input type="text" id="CLOSURE_DATE" name="CLOSURE_DATE" placeholder="Closure Date">
+            </div>
+            <button id="searchButton" style="background-color: blue; color: white;" onclick="fetchData()">Search</button>
+            <button type="submit" style="background-color: green; color: white;" onclick="updateData()">Save</button>
+            <!-- <button type="submit" onclick="" >Submit</button> -->
+        </form>
+    </div>
+    <script>
+    function fetchData() {
+    event.preventDefault();
+    const incidentId = document.getElementById('INCIDENT_ID').value;
+    fetch(`/fetchData/${incidentId}`) // Assuming you have an endpoint to fetch data based on the incident ID
+        .then(response => response.json())
+        .then(data => {
+            populateFormFields(data);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getFullYear()}`;
+};
+
+function populateFormFields(data) {
+    document.getElementById('COMPANY').value = data.COMPANY;
+    document.getElementById('ORGANIZATION').value = data.ORGANIZATION;
+    document.getElementById('DEPARTMENT').value = data.DEPARTMENT;
+    document.getElementById('CONTACT').value = data.CONTACT;
+    document.getElementById('SUMMARY').value = data.SUMMARY;
+    document.getElementById('AUTHORIZATION_GRP').value = data.AUTHORIZATION_GRP;
+    document.getElementById('SERVICE').value = data.SERVICE;
+    document.getElementById('CI').value = data.CI;
+    document.getElementById('INCIDENT_TYPE').value = data.INCIDENT_TYPE;
+    document.getElementById('REPORTED_SOURCE').value = data.REPORTED_SOURCE;
+    document.getElementById('ASSIGNED_GROUP').value = data.ASSIGNED_GROUP;
+    document.getElementById('ASSIGNEE').value = data.ASSIGNEE;
+    document.getElementById('VENDOR_GROUP').value = data.VENDOR_GROUP;
+    document.getElementById('VENDOR_TICKET_NUMBER').value = data.VENDOR_TICKET_NUMBER;
+    document.getElementById('STATUS').value = data.STATUS;
+    document.getElementById('STATUS_REASON').value = data.STATUS_REASON;
+    document.getElementById('PRIORITY').value = data.PRIORITY;
+    document.getElementById('CREATION_DATE').value = formatDate(data.CREATION_DATE);
+    document.getElementById('OPEN_DURATION').value = data.OPEN_DURATION;
+    document.getElementById('CLOSURE_DATE').value = formatDate(data.CLOSURE_DATE);
+}
+    
+    </script>
+</html>
