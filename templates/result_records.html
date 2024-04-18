@@ -1,0 +1,72 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Records</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <!-- Table to display fetched data -->
+    <div id="dataContainer">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <!-- Table header columns -->
+                    <th>Incident ID</th>
+                    <th>Company</th>
+                    <th>Organization</th>
+                    <th>Department</th>
+                    <th>Contact</th>
+                    <th>Summary</th>
+                    <th>Authorization Group</th>
+                    <th>Service</th>
+                    <th>CI (Caps)</th>
+                    <th>Incident Type</th>
+                    <th>Reported Source</th>
+                    <th>Assigned Group</th>
+                    <th>Assignee</th>
+                    <th>Vendor Group</th>
+                    <th>Vendor Ticket Number</th>
+                    <th>Status</th>
+                    <th>Status Reason</th>
+                    <th>Priority</th>
+                    <th>Creation Date</th>
+                    <th>Open Duration</th>
+                    <th>Closure Date</th>
+                    <!-- Add headers for other attributes -->
+                </tr>
+            </thead>
+            <tbody id="dataBody">
+                <!-- Iterate over records and populate table rows -->
+                <% records.forEach(record => { %>
+                    <tr>
+                        <td><%= record.INCIDENT_ID %></td>
+                        <td><%= record.COMPANY %></td>
+                        <td><%= record.ORGANIZATION %></td>
+                        <td><%= record.DEPARTMENT %></td>
+                        <td><%= record.CONTACT %></td>
+                        <td><%= record.SUMMARY %></td>
+                        <td><%= record.AUTHORIZATION_GROUP %></td>
+                        <td><%= record.SERVICE %></td>
+                        <td><%= record.CI %></td>
+                        <td><%= record.INCIDENT_TYPE %></td>
+                        <td><%= record.REPORTED_SOURCE %></td>
+                        <td><%= record.ASSIGNED_GROUP %></td>
+                        <td><%= record.ASSIGNEE %></td>
+                        <td><%= record.VENDOR_GROUP %></td>
+                        <td><%= record.VENDOR_TICKET_NUMBER %></td>
+                        <td><%= record.STATUS %></td>
+                        <td><%= record.STATUS_REASON %></td>
+                        <td><%= record.PRIORITY %></td>
+                        <td><%= record.CREATION_DATE %></td>
+                        <td><%= record.OPEN_DURATION %></td>
+                        <td><%= record.CLOSURE_DATE %></td>
+                        <!-- Add table cells for other attributes -->
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

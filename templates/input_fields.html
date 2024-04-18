@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Update Remedy Data </h1>
-        <form id="dataForm" method="POST" action="/updateForm" class="form-container">
+        <h1 class="title">View Remedy Data </h1>
+        <form id="dataForm" method="GET" action="" class="form-container">
             <div class="form-group">
                 <input type="hidden" id="fetchedData" name="fetchedData">
                 <div>
@@ -126,53 +126,132 @@
                     <label for="CLOSURE_DATE">Closure Date:</label>
                     <input type="text" id="CLOSURE_DATE" name="CLOSURE_DATE" placeholder="Closure Date">
                 </div>
-            <button id="searchButton" onclick="fetchData()">Search</button>
-            <!-- <button id="saveButton" style="background-color: green; color: white;" onclick="saveData(event)">Save</button> -->
-            <button type="submit">Update Data</button>
-            <!-- <button type="submit" onclick="" >Submit</button> -->
-        </form>
+            <button id="searchButton"  onclick="fetchData2()">Search</button>
+    </form>
     </div>
+
     <script>
-    function fetchData() {
-    event.preventDefault();
-    const incidentId = document.getElementById('INCIDENT_ID').value;
-    fetch(`/fetchData/${incidentId}`) // Assuming you have an endpoint to fetch data based on the incident ID
-        .then(response => response.json())
-        .then(data => {
-            populateFormFields(data);
-        })
-        .catch(error => {console.error('Error fetching data:', error);
-        alert("Record not found");
-});
-}
+    // function fetchData() {
+    //     // Fetch data based on the filled form fields
+    //     const formData = new FormData(document.getElementById('dataForm'));
+    //     const queryParams = new URLSearchParams(formData).toString();
+    //     window.location.href = `/searchResults?${queryParams}`; // Redirect to /searchResults with query parameters
+    // }
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return `${date.getDate().toString().padStart(2, '0')}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getFullYear()}`;
-};
+    function fetchData2() {
+            event.preventDefault();
 
-function populateFormFields(data) {
-    document.getElementById('COMPANY').value = data.COMPANY;
-    document.getElementById('ORGANIZATION').value = data.ORGANIZATION;
-    document.getElementById('DEPARTMENT').value = data.DEPARTMENT;
-    document.getElementById('CONTACT').value = data.CONTACT;
-    document.getElementById('SUMMARY').value = data.SUMMARY;
-    document.getElementById('AUTHORIZATION_GRP').value = data.AUTHORIZATION_GRP;
-    document.getElementById('SERVICE').value = data.SERVICE;
-    document.getElementById('CI').value = data.CI;
-    document.getElementById('INCIDENT_TYPE').value = data.INCIDENT_TYPE;
-    document.getElementById('REPORTED_SOURCE').value = data.REPORTED_SOURCE;
-    document.getElementById('ASSIGNED_GROUP').value = data.ASSIGNED_GROUP;
-    document.getElementById('ASSIGNEE').value = data.ASSIGNEE;
-    document.getElementById('VENDOR_GROUP').value = data.VENDOR_GROUP;
-    document.getElementById('VENDOR_TICKET_NUMBER').value = data.VENDOR_TICKET_NUMBER;
-    document.getElementById('STATUS').value = data.STATUS;
-    document.getElementById('STATUS_REASON').value = data.STATUS_REASON;
-    document.getElementById('PRIORITY').value = data.PRIORITY;
-    document.getElementById('CREATION_DATE').value = formatDate(data.CREATION_DATE);
-    document.getElementById('OPEN_DURATION').value = data.OPEN_DURATION;
-    document.getElementById('CLOSURE_DATE').value = formatDate(data.CLOSURE_DATE);
-}
- 
-    </script>
+            // Collect attribute values from input fields
+            const incidentId = document.getElementById('INCIDENT_ID').value;
+            const company = document.getElementById('COMPANY').value;
+            const organization = document.getElementById('ORGANIZATION').value;
+            const department = document.getElementById('DEPARTMENT').value;
+            const contact = document.getElementById('CONTACT').value;
+            const summary = document.getElementById('SUMMARY').value;
+            const authorizationGrp = document.getElementById('AUTHORIZATION_GRP').value;
+            const service = document.getElementById('SERVICE').value;
+            const ci = document.getElementById('CI').value;
+            const incidentType = document.getElementById('INCIDENT_TYPE').value;
+            const reportedSource = document.getElementById('REPORTED_SOURCE').value;
+            const assignedGroup = document.getElementById('ASSIGNED_GROUP').value;
+            const assignee = document.getElementById('ASSIGNEE').value;
+            const vendorGroup = document.getElementById('VENDOR_GROUP').value;
+            const vendorTicketNumber = document.getElementById('VENDOR_TICKET_NUMBER').value;
+            const status = document.getElementById('STATUS').value;
+            const statusReason = document.getElementById('STATUS_REASON').value;
+            const priority = document.getElementById('PRIORITY').value;
+            const creationDate = document.getElementById('CREATION_DATE').value;
+            const openDuration = document.getElementById('OPEN_DURATION').value;
+            const closureDate = document.getElementById('CLOSURE_DATE').value;
+            // Collect other attribute values in a similar manner
+
+            // Construct the query string with non-null attributes
+            let queryString = '';
+            if (incidentId) queryString += `INCIDENT_ID=${incidentId}&`;
+            if (company) queryString += `COMPANY=${company}&`;
+            if (organization) queryString += `ORGANIZATION=${organization}&`;
+            if (department) queryString += `DEPARTMENT=${department}&`;
+            if (contact) queryString += `CONTACT=${contact}&`;
+            if (summary) queryString += `SUMMARY=${summary}&`;
+            if (authorizationGrp) queryString += `AUTHORIZATION_GRP=${authorizationGrp}&`;
+            if (service) queryString += `SERVICE=${service}&`;
+            if (ci) queryString += `CI=${ci}&`;
+            if (incidentType) queryString += `INCIDENT_TYPE=${incidentType}&`;
+            if (reportedSource) queryString += `REPORTED_SOURCE=${reportedSource}&`;
+            if (assignedGroup) queryString += `ASSIGNED_GROUP=${assignedGroup}&`;
+            if (assignee) queryString += `ASSIGNEE=${assignee}&`;
+            if (vendorGroup) queryString += `VENDOR_GROUP=${vendorGroup}&`;
+            if (vendorTicketNumber) queryString += `VENDOR_TICKET_NUMBER=${vendorTicketNumber}&`;
+            if (status) queryString += `STATUS=${status}&`;
+            if (statusReason) queryString += `STATUS_REASON=${statusReason}&`;
+            if (priority) queryString += `PRIORITY=${priority}&`;
+            if (creationDate) queryString += `CREATION_DATE=${creationDate}&`;
+            if (openDuration) queryString += `OPEN_DURATION=${openDuration}&`;
+            if (closureDate) queryString += `CLOSURE_DATE=${closureDate}&`;
+            // Include other attributes in the query string
+
+            // Remove the trailing '&' if present
+            if (queryString.endsWith('&')) {
+                queryString = queryString.slice(0, -1);
+            }
+
+            // Fetch data using the constructed query string
+            fetch(`/fetchData2?${queryString}`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Record not found!');
+                    }
+                })
+                // .then(data => {
+                //     populateFormFields(data);
+                // })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    // Show pop-up message for record not found
+                    alert('Record not found!!!');
+                });
+        }
+
+
+
+//     function fetchData2() {
+//     event.preventDefault();
+
+//     // Collect attribute values from input fields
+//     const formData = new FormData(document.getElementById('dataForm'));
+//     const data = Object.fromEntries(formData.entries());
+
+//     // Fetch data using POST request
+//     fetch('/fetchData2', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(data)
+//     })
+//     .then(response => {
+//         if (response.ok) {
+//             return response.json();
+//         } else {
+//             throw new Error('Record not found!');
+//         }
+//     })
+//     .then(data => {
+//         // Handle fetched data (if needed)
+//         console.log(data);
+//         // Redirect or display data as required
+//     })
+//     .catch(error => {
+//         console.error('Error fetching data:', error);
+//         // Show pop-up message for record not found
+//         alert('Record not found!!!');
+//     });
+// }
+        </script>
+        
+    
+    
+</body>
 </html>

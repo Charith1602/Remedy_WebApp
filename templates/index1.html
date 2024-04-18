@@ -11,10 +11,16 @@
         <h1>Remedy Data Handling Portal</h1>
         <div class="button-container">
             <button onclick="location.href='/submitForm'">Insert Records</button>
-            <button onclick="location.href='/page2'">View records</button>
+            <button onclick="location.href='/searchForm'">View records</button>
             <button onclick="location.href='/updateForm'">Update Records</button>
-            <button onclick="location.href='/page4'">Delete Records</button>
+            <button onclick="location.href='/deleteForm'">Delete Records</button>
         </div>
     </div>
+    <script>
+        // JavaScript function to navigate to inputfields.html
+        function navigateToInputFields() {
+            location.href = '/searchForm';
+        }
+    </script>
 </body>
 </html>

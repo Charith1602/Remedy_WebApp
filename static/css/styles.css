@@ -18,6 +18,7 @@ body {
     max-width: 500px; /* Adjust as needed */
     width: 100%;
     text-align: center;
+    margin: 0 auto;
 }
 
 .title {
@@ -30,16 +31,58 @@ body {
 }
 
 .form-group label {
-    display: block;
+    /* display: block; */
+    
     margin-bottom: 5px;
 }
 
 .form-group input {
-    width: calc(100% - 10px); /* Adjust for input padding */
+    width: calc(50%); /* Adjust for input padding */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box; /* Ensure input width includes padding */
+    align-items: right;
+}
+
+.form-group select {
+    width: calc(50%); /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure input width includes padding */
+    align-items: right;
+}
+
+
+
+
+.form-group1 {
+    margin-bottom: 20px;
+}
+
+.form-group1 label {
+    /* display: block; */
+    
+    margin-bottom: 5px;
+}
+
+.form-group1 input {
+    width: calc(70%); /* Adjust for input padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure input width includes padding */
+    align-items: right;
+}
+
+.form-group1 select {
+    width: calc(70%); /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure input width includes padding */
+    align-items: right;
 }
 
 button[type="submit"] {
@@ -51,7 +94,15 @@ button[type="submit"] {
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
+button[id="searchButton"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 /* button[type="submit"]:hover {
     background-color: #45a049;
 } */
