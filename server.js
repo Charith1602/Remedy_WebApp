@@ -13,9 +13,9 @@ app.use('/static', express.static(path.join(__dirname, 'static')));
 
 // Database connection configuration
 const dbConfig = {
-    user: 'testing',
-    password: 'testing123',
-    connectString: '192.168.0.100/FREEPDB1'
+    user: 'anitta',
+    password: 'anipm',
+    connectString: '192.168.1.8/FREEPDB1'
 };
 
 // Serve the index.html file
@@ -40,16 +40,52 @@ app.get('/deleteForm', (req, res) => {
 //     const queryString = new URLSearchParams(queryParams).toString();
 //     res.redirect(`/searchResults?${queryString}`);
 // });
-app.get('/searchForm', (req, res) => {
-    // Handle the GET request for the search form
-    res.sendFile(path.join(__dirname, '/templates/input_fields.html'));
-});
+// app.get('/searchForm', (req, res) => {
+//     // Handle the GET request for the search form
+//     res.sendFile(path.join(__dirname, '/templates/input_fields.html'));
+// });
 
 app.get('/searchResults', (req, res) => {
     res.sendFile(path.join(__dirname, '/templates/result_records.html'));
 });
 
+app.get("/searchForm", (req, res) => {
+  res.sendFile(path.join(__dirname, "/templates/search.html"));
+});
 
+app.post("/search", async (req, res) => {
+  let query = "SELECT * FROM remedy_incidents WHERE ";
+  const values = [];
+  for (const key in req.body) {
+    if (req.body[key]) {
+      query += `${key} = :${key} AND `;
+      values.push(req.body[key]);
+    }
+  }
+  query = query.slice(0, -5); // Remove the last "AND "
+  try {
+    const connection = await oracledb.getConnection(dbConfig);
+    const result = await connection.execute(query, values);
+    connection.close();
+    let tableHtml = '<table border="1"><tr>';
+    for (const column of result.metaData) {
+      tableHtml += `<th>${column.name}</th>`;
+    }
+    tableHtml += "</tr>";
+    for (const row of result.rows) {
+      tableHtml += "<tr>";
+      for (const value of row) {
+        tableHtml += `<td>${value}</td>`;
+      }
+      tableHtml += "</tr>";
+    }
+    tableHtml += "</table>";
+    res.send(tableHtml);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching data");
+  }
+});
 
 
 // Endpoint for submitting data
