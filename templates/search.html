@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Remedy Incidents</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Remedy Data</h1>
+        <div>
+            <form action="/search" method="POST" class="form-container">
+                <label for="INCIDENT_ID">INCIDENT_ID:</label>
+                <input type="text" id="INCIDENT_ID" name="INCIDENT_ID">
+                <br>
+                <label for="COMPANY">COMPANY:</label>
+                <input type="text" id="COMPANY" name="COMPANY">
+                <br>
+                <label for="ORGANIZATION">ORGANIZATION:</label>
+                <input type="text" id="ORGANIZATION" name="ORGANIZATION">
+                <br>
+                <label for="DEPARTMENT">DEPARTMENT:</label>
+                <input type="text" id="DEPARTMENT" name="DEPARTMENT">
+                <br>
+                <label for="CONTACT">CONTACT:</label>
+                <input type="text" id="CONTACT" name="CONTACT">
+                <br>
+                <label for="SUMMARY">SUMMARY:</label>
+                <input type="text" id="SUMMARY" name="SUMMARY">
+                <br>
+                <label for="AUTHORIZATION_GRP">AUTHORIZATION_GRP:</label>
+                <input type="text" id="AUTHORIZATION_GRP" name="AUTHORIZATION_GRP">
+                <br>
+                <label for="SERVICE">SERVICE:</label>
+                <input type="text" id="SERVICE" name="SERVICE">
+                <br>
+                <label for="CI">CI:</label>
+                <input type="text" id="CI" name="CI">
+                <br>
+                <label for="INCIDENT_TYPE">INCIDENT_TYPE:</label>
+                <input type="text" id="INCIDENT_TYPE" name="INCIDENT_TYPE">
+                <br>
+                <label for="REPORTED_SOURCE">REPORTED_SOURCE:</label>
+                <input type="text" id="REPORTED_SOURCE" name="REPORTED_SOURCE">
+                <br>
+                <label for="ASSIGNED_GROUP">ASSIGNED_GROUP:</label>
+                <input type="text" id="ASSIGNED_GROUP" name="ASSIGNED_GROUP">
+                <br>
+                <label for="ASSIGNEE">ASSIGNEE:</label>
+                <input type="text" id="ASSIGNEE" name="ASSIGNEE">
+                <br>
+                <label for="VENDOR_GROUP">VENDOR_GROUP:</label>
+                <input type="text" id="VENDOR_GROUP" name="VENDOR_GROUP">
+                <br>
+                <label for="VENDOR_TICKET_NUMBER">VENDOR_TICKET_NUMBER:</label>
+                <input type="text" id="VENDOR_TICKET_NUMBER" name="VENDOR_TICKET_NUMBER">
+                <br>
+                <label for="STATUS">STATUS:</label>
+                <input type="text" id="STATUS" name="STATUS">
+                <br>
+                <label for="STATUS_REASON">STATUS_REASON:</label>
+                <input type="text" id="STATUS_REASON" name="STATUS_REASON">
+                <br>
+                <label for="PRIORITY">PRIORITY:</label>
+                <input type="text" id="PRIORITY" name="PRIORITY">
+                <br>
+                <label for="CREATION_DATE">CREATION_DATE:</label>
+                <input type="text" id="CREATION_DATE" name="CREATION_DATE">
+                <br>
+                <label for="OPEN_DURATION">OPEN_DURATION:</label>
+                <input type="text" id="OPEN_DURATION" name="OPEN_DURATION">
+                <br>
+                <label for="CLOSURE_DATE">CLOSURE_DATE:</label>
+                <input type="text" id="CLOSURE_DATE" name="CLOSURE_DATE">
+                <br>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="search-table">
+            <table id="results">
+                <!-- Results will be displayed here -->
+            </table>
+        </div>
+    </div>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const responseData = await fetch('/search', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.text());
+            document.getElementById('tableContainer').innerHTML = responseData;
+        });
+    </script>
+</body>
+
+</html>
