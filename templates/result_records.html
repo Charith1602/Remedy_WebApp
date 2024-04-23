@@ -1,14 +1,16 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result Records</title>
+    <link rel="stylesheet" href="/static/css/styles2.css">
 </head>
 <body>
     <h1>Search Results</h1>
     <!-- Table to display fetched data -->
-    <div id="dataContainer">
+    <div id="dataContainer" class="result_container">
+        <h1>Search Results</h1>
         <table id="dataTable">
             <thead>
                 <tr>
@@ -62,7 +64,6 @@
                         <td><%= record.CREATION_DATE %></td>
                         <td><%= record.OPEN_DURATION %></td>
                         <td><%= record.CLOSURE_DATE %></td>
-                        <!-- Add table cells for other attributes -->
                     </tr>
                 <% }); %>
             </tbody>

@@ -10,12 +10,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/static', express.static(path.join(__dirname, 'static')));
 
+// app.set('view engine', 'ejs');
 
 // Database connection configuration
 const dbConfig = {
-    user: 'anitta',
-    password: 'anipm',
-    connectString: '192.168.1.8/FREEPDB1'
+    user: 'testing',
+    password: 'testing123',
+    connectString: '192.168.0.100/FREEPDB1'
 };
 
 // Serve the index.html file
@@ -87,6 +88,28 @@ app.post("/search", async (req, res) => {
   }
 });
 
+// app.post("/search", async (req, res) => {
+//   let query = "SELECT * FROM remedy_incidents WHERE ";
+//   const values = [];
+//   for (const key in req.body) {
+//       if (req.body[key]) {
+//           query += `${key} = :${key} AND `;
+//           values.push(req.body[key]);
+//       }
+//   }
+//   query = query.slice(0, -5); // Remove the last "AND "
+//   try {
+//       const connection = await oracledb.getConnection(dbConfig);
+//       const result = await connection.execute(query, values);
+//       connection.close();
+      
+//       // Render the 'result_records' template with the fetched data
+//       res.render('result_records', { records: result.rows });
+//   } catch (err) {
+//       console.error(err);
+//       res.status(500).send("Error fetching data");
+//   }
+// });
 
 // Endpoint for submitting data
 app.post('/submitData', async (req, res) => {

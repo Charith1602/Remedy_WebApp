@@ -6,72 +6,125 @@
 </head>
 <body>
     <div class="container">
-        <h1>Search Remedy Data</h1>
+        <h1>View Remedy Data</h1>
         <div>
-            <form action="/search" method="POST" class="form-container">
-                <label for="INCIDENT_ID">INCIDENT_ID:</label>
-                <input type="text" id="INCIDENT_ID" name="INCIDENT_ID">
-                <br>
-                <label for="COMPANY">COMPANY:</label>
-                <input type="text" id="COMPANY" name="COMPANY">
-                <br>
-                <label for="ORGANIZATION">ORGANIZATION:</label>
-                <input type="text" id="ORGANIZATION" name="ORGANIZATION">
-                <br>
-                <label for="DEPARTMENT">DEPARTMENT:</label>
-                <input type="text" id="DEPARTMENT" name="DEPARTMENT">
-                <br>
-                <label for="CONTACT">CONTACT:</label>
-                <input type="text" id="CONTACT" name="CONTACT">
-                <br>
-                <label for="SUMMARY">SUMMARY:</label>
-                <input type="text" id="SUMMARY" name="SUMMARY">
-                <br>
-                <label for="AUTHORIZATION_GRP">AUTHORIZATION_GRP:</label>
-                <input type="text" id="AUTHORIZATION_GRP" name="AUTHORIZATION_GRP">
-                <br>
-                <label for="SERVICE">SERVICE:</label>
-                <input type="text" id="SERVICE" name="SERVICE">
-                <br>
-                <label for="CI">CI:</label>
-                <input type="text" id="CI" name="CI">
-                <br>
-                <label for="INCIDENT_TYPE">INCIDENT_TYPE:</label>
-                <input type="text" id="INCIDENT_TYPE" name="INCIDENT_TYPE">
-                <br>
-                <label for="REPORTED_SOURCE">REPORTED_SOURCE:</label>
-                <input type="text" id="REPORTED_SOURCE" name="REPORTED_SOURCE">
-                <br>
-                <label for="ASSIGNED_GROUP">ASSIGNED_GROUP:</label>
-                <input type="text" id="ASSIGNED_GROUP" name="ASSIGNED_GROUP">
-                <br>
-                <label for="ASSIGNEE">ASSIGNEE:</label>
-                <input type="text" id="ASSIGNEE" name="ASSIGNEE">
-                <br>
-                <label for="VENDOR_GROUP">VENDOR_GROUP:</label>
-                <input type="text" id="VENDOR_GROUP" name="VENDOR_GROUP">
-                <br>
-                <label for="VENDOR_TICKET_NUMBER">VENDOR_TICKET_NUMBER:</label>
-                <input type="text" id="VENDOR_TICKET_NUMBER" name="VENDOR_TICKET_NUMBER">
-                <br>
-                <label for="STATUS">STATUS:</label>
-                <input type="text" id="STATUS" name="STATUS">
-                <br>
-                <label for="STATUS_REASON">STATUS_REASON:</label>
-                <input type="text" id="STATUS_REASON" name="STATUS_REASON">
-                <br>
-                <label for="PRIORITY">PRIORITY:</label>
-                <input type="text" id="PRIORITY" name="PRIORITY">
-                <br>
-                <label for="CREATION_DATE">CREATION_DATE:</label>
-                <input type="text" id="CREATION_DATE" name="CREATION_DATE">
-                <br>
-                <label for="OPEN_DURATION">OPEN_DURATION:</label>
-                <input type="text" id="OPEN_DURATION" name="OPEN_DURATION">
-                <br>
-                <label for="CLOSURE_DATE">CLOSURE_DATE:</label>
-                <input type="text" id="CLOSURE_DATE" name="CLOSURE_DATE">
-                <br>
+            <form action="/search" method="POST" class="form-group">
+                <!-- <div class="form-group"> -->
+                    <input type="hidden" id="fetchedData" name="fetchedData">
+                    <div>
+                        <label for="INCIDENT_ID">Incident ID:</label>
+                        <input type="text" id="INCIDENT_ID" name="INCIDENT_ID" placeholder="Incident ID">
+                    </div>
+                    <div>
+                        <label for="COMPANY">Company:</label>
+                        <input type="text" id="COMPANY" name="COMPANY" placeholder="Company">
+                    </div>
+                    <div>
+                        <label for="ORGANIZATION">Organization:</label>
+                        <input type="text" id="ORGANIZATION" name="ORGANIZATION" placeholder="Organization">
+                    </div>
+                    <div>
+                        <label for="DEPARTMENT">Department:</label>
+                        <input type="text" id="DEPARTMENT" name="DEPARTMENT" placeholder="Department">
+                    </div>
+                    <div>
+                        <label for="CONTACT">Contact:</label>
+                        <input type="text" id="CONTACT" name="CONTACT" placeholder="Contact">
+                    </div>
+                    <div>
+                        <label for="SUMMARY">Summary:</label>
+                        <input type="text" id="SUMMARY" name="SUMMARY" placeholder="Summary">
+                    </div>
+                    <div>
+                        <label for="AUTHORIZATION_GRP">Authorization Group:</label>
+                        <input type="text" id="AUTHORIZATION_GRP" name="AUTHORIZATION_GRP" placeholder="Authorization Group">
+                    </div>
+                    <div>
+                        <label for="SERVICE">Service:</label>
+                        <input type="text" id="SERVICE" name="SERVICE" placeholder="Service">
+                    </div>
+                    <div>
+                        <label for="CI">CI(Caps):</label>
+                        <input type="text" id="CI" name="CI" placeholder="CI(Caps)">
+                    </div>
+                    <div>
+                        <label for="INCIDENT_TYPE">Incident Type:</label>
+                        <select id="INCIDENT_TYPE" name="INCIDENT_TYPE">
+                            <option value="" disabled selected>Incident Type</option>
+                            <option value="user service restoration">user service restoration</option>
+                            <option value="user service request">user service request</option>
+                            <option value="service improvement">service improvement</option>
+                            <option value="infrastructure event">infrastructure event</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="REPORTED_SOURCE">Reported Source:</label>
+                        <select id="REPORTED_SOURCE" name="REPORTED_SOURCE">
+                            <option value="" disabled selected>Reported Source</option>
+                            <option value="automation">automation</option>
+                            <option value="email">email</option>
+                            <option value="phone">phone</option>
+                            <option value="self service">self service</option>
+                            <option value="event management">event management</option>
+                            <option value="chat">chat</option>
+                            <option value="instant message">instant message</option>
+                            <option value="e bonding">e bonding</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="ASSIGNED_GROUP">Assigned Group:</label>
+                        <input type="text" id="ASSIGNED_GROUP" name="ASSIGNED_GROUP" placeholder="Assigned Group">
+                    </div>
+                    <div>
+                        <label for="ASSIGNEE">Assignee:</label>
+                        <input type="text" id="ASSIGNEE" name="ASSIGNEE" placeholder="Assignee">
+                    </div>
+                    <div>
+                        <label for="VENDOR_GROUP">Vendor Group:</label>
+                        <input type="text" id="VENDOR_GROUP" name="VENDOR_GROUP" placeholder="Vendor Group">
+                    </div>
+                    <div>
+                        <label for="VENDOR_TICKET_NUMBER">Vendor Ticket Number:</label>
+                        <input type="text" id="VENDOR_TICKET_NUMBER" name="VENDOR_TICKET_NUMBER" placeholder="Vendor Ticket Number">
+                    </div>
+                    <div>
+                        <label for="STATUS">Status:</label>
+                        <select id="STATUS" name="STATUS">
+                            <option value="" disabled selected>Status</option>
+                            <option value="new">new</option>
+                            <option value="assigned">assigned</option>
+                            <option value="in progress">in progress</option>
+                            <option value="pending">pending</option>
+                            <option value="resolved">resolved</option>
+                            <option value="closed">closed</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="STATUS_REASON">Status Reason:</label>
+                        <input type="text" id="STATUS_REASON" name="STATUS_REASON" placeholder="Status Reason">
+                    </div>
+                    <div>
+                        <label for="PRIORITY">Priority:</label>
+                        <select id="PRIORITY" name="PRIORITY" >
+                            <option value="" disabled selected>Priority</option>
+                            <option value="p1">P1</option>
+                            <option value="p2">P2</option>
+                            <option value="p3">P3</option>
+                            <option value="p4">P4</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="CREATION_DATE">Creation Date:</label>
+                        <input type="text" id="CREATION_DATE" name="CREATION_DATE" placeholder="Creation Date">
+                    </div>
+                    <div>
+                        <label for="OPEN_DURATION">Open Duration:</label>
+                        <input type="text" id="OPEN_DURATION" name="OPEN_DURATION" placeholder="Open Duration">
+                    </div>
+                    <div>
+                        <label for="CLOSURE_DATE">Closure Date:</label>
+                        <input type="text" id="CLOSURE_DATE" name="CLOSURE_DATE" placeholder="Closure Date">
+                    </div>
                 <button type="submit">Search</button>
             </form>
         </div>

@@ -7,20 +7,19 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-y: auto;
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds viewport height */
+    font-size: 30px; /* Adjust the font size */
 }
-
 .container {
     background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px; /* Adjust as needed */
+    padding: 40px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+    max-width: 800px; 
     width: 100%;
     text-align: center;
-    margin: 0 auto;
+    margin: 20px auto; 
 }
-
 .title {
     text-align: center;
     margin-bottom: 20px;
@@ -32,113 +31,95 @@ body {
 
 .form-group label {
     /* display: block; */
-    
+    font-size: large;
     margin-bottom: 5px;
 }
 
-.form-group input {
-    width: calc(50%); /* Adjust for input padding */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensure input width includes padding */
-    align-items: right;
-}
-
+.form-group input,
 .form-group select {
-    width: calc(50%); /* Adjust width as needed */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensure input width includes padding */
-    align-items: right;
+    width: calc(50%); 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    box-sizing: border-box; 
+    font-size: large;
+    margin-bottom: 10px; 
+    height:50px;
 }
-
-
-
-
 .form-group1 {
     margin-bottom: 20px;
 }
-
-.form-group1 label {
-    /* display: block; */
-    
-    margin-bottom: 5px;
-}
-
-.form-group1 input {
-    width: calc(70%); /* Adjust for input padding */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensure input width includes padding */
-    align-items: right;
-}
-
+.form-group1 input,
 .form-group1 select {
-    width: calc(70%); /* Adjust width as needed */
+    width: calc(70%);
     padding: 10px;
+    height:50px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensure input width includes padding */
+    border-radius: 10px;
+    box-sizing: border-box; 
     align-items: right;
+    font-size: large;
 }
-
 button[type="submit"] {
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 18px; 
 }
 button[id="searchButton"] {
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 18px; 
 }
 /* button[type="submit"]:hover {
     background-color: #45a049;
 } */
-
 .button-container {
     text-align: center;
 }
-
 .button-container button {
-    background-color: #4CAF50; /* Green background color */
-    color: white; /* White text color */
+    background-color: #4CAF50; 
+    color: white; 
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
-    margin: 5px; /* Add some margin between buttons */
+    padding: 14px 24px; 
+    margin: 5px; 
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 18px; 
 }
-
 .button-container button:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #45a049; 
 }
-
 input[type="text"],
 input[type="date"] {
-    background-color: #ffffff; /* Set the background color for all input fields */
-    border: 1px solid #ccc; /* Add a border for clarity */
-    padding: 8px; /* Add some padding for spacing */
-    margin-bottom: 10px; /* Add margin at the bottom to create space between input fields */
+    background-color: #ffffff; 
+    border: 1px solid #ccc; 
+    padding: 8px; 
+    margin-bottom: 10px; 
 }
 input[type="text"]:hover,
 input[type="date"]:hover {
-    background-color: #e0f7fa; /* Change background color on hover */
-    transition: background-color 0.3s ease; /* Smooth transition effect */
+    background-color: #e0f7fa; 
+    transition: background-color 0.3s ease;
 }
-
+input[type="date"]::-webkit-calendar-picker-indicator {
+    font-size: 1.2em; /* Adjust the font size to increase the size of the date picker icon */
+    padding: 0.5em; /* Add padding to increase the clickable area */
+    background-color: transparent; /* Set background color to transparent */
+    color: inherit; /* Inherit color from parent */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    outline: none; /* Remove default focus outline */
+}
 select {
     width: 100%;
     padding: 10px;

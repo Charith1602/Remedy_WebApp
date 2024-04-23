@@ -1,0 +1,21 @@
+#dataTable {
+    width: 70%; /* Adjust this value as needed for your desired width */
+    margin: 0 auto; /* Center the table horizontally */
+  }
+  
+  /* Limit text wrapping in table cells */
+  td {
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Truncate content if it overflows */
+    text-overflow: ellipsis; /* Add ellipsis (...) for truncated content */
+  }
+  
+  /* Optional: Adjust font size and padding for better readability */
+  td {
+    font-size: 0.8rem; /* Adjust font size as needed */
+    padding: 5px; /* Adjust padding as needed */
+  }
+  tr {
+    font-size: 0.8rem; /* Adjust font size as needed */
+    padding: 5px; /* Adjust padding as needed */
+  }
