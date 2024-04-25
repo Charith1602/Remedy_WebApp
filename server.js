@@ -9,14 +9,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/static', express.static(path.join(__dirname, 'static')));
-
+app.use(express.json());
 // app.set('view engine', 'ejs');
 
 // Database connection configuration
 const dbConfig = {
-    user: 'testing',
-    password: 'testing123',
-    connectString: '192.168.0.100/FREEPDB1'
+    user: 'anitta',
+    password: 'anipm',
+    connectString: '192.168.1.7/FREEPDB1'
 };
 
 // Serve the index.html file
@@ -54,39 +54,68 @@ app.get("/searchForm", (req, res) => {
   res.sendFile(path.join(__dirname, "/templates/search.html"));
 });
 
-app.post("/search", async (req, res) => {
-  let query = "SELECT * FROM remedy_incidents WHERE ";
-  const values = [];
-  for (const key in req.body) {
-    if (req.body[key]) {
-      query += `${key} = :${key} AND `;
-      values.push(req.body[key]);
+// app.post("/searchForm", async (req, res) => {
+//   let query = "SELECT * FROM remedy_incidents WHERE ";
+//   const values = [];
+//   for (const key in req.body) {
+//     if (req.body[key]) {
+//       query += `${key} = :${key} AND `;
+//       values.push(req.body[key]);
+//     }
+//   }
+//   query = query.slice(0, -5); // Remove the last "AND "
+//   try {
+//     const connection = await oracledb.getConnection(dbConfig);
+//     const result = await connection.execute(query, values);
+//     connection.close();
+//     let tableHtml = '<tr>';
+//     for (const column of result.metaData) {
+//       tableHtml += `<th>${column.name}</th>`;
+//     }
+//     tableHtml += "</tr>";
+//     for (const row of result.rows) {
+//       tableHtml += "<tr>";
+//       for (const value of row) {
+//         tableHtml += `<td>${value}</td>`;
+//       }
+//       tableHtml += "</tr>";
+//     }
+//     // tableHtml += "</table>";
+//     console.log("Table html:\n",tableHtml)
+//     res.send(tableHtml);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Error fetching data");
+//   }
+// });
+
+app.post("/searchForm", async (req, res) => {
+    let query = "SELECT * FROM remedy_incidents WHERE ";
+    const values = [];
+    const jsonData=req.body;
+    console.log("Received JSON data:", jsonData);
+    for (const key in req.body) {
+        if (req.body[key]) {
+            query += `${key} = :${key} AND `;
+            values.push(req.body[key]);
+        }
     }
-  }
-  query = query.slice(0, -5); // Remove the last "AND "
-  try {
-    const connection = await oracledb.getConnection(dbConfig);
-    const result = await connection.execute(query, values);
-    connection.close();
-    let tableHtml = '<table border="1"><tr>';
-    for (const column of result.metaData) {
-      tableHtml += `<th>${column.name}</th>`;
+    query = query.slice(0, -5); // Remove the last "AND "
+    console.log("Query:", query);
+    try {
+        const connection = await oracledb.getConnection(dbConfig);
+        const result = await connection.execute(query, values);
+        connection.close();
+        // Send a JSON response containing the fetched data
+
+        res.json(result.rows);
+        console.log("Data fetched:", result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error fetching data");
     }
-    tableHtml += "</tr>";
-    for (const row of result.rows) {
-      tableHtml += "<tr>";
-      for (const value of row) {
-        tableHtml += `<td>${value}</td>`;
-      }
-      tableHtml += "</tr>";
-    }
-    tableHtml += "</table>";
-    res.send(tableHtml);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error fetching data");
-  }
 });
+
 
 // app.post("/search", async (req, res) => {
 //   let query = "SELECT * FROM remedy_incidents WHERE ";

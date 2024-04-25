@@ -1,0 +1,215 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds viewport height */
+    /* font-size: 30px; Adjust the font size */
+}
+
+.container {
+    background-color: white;
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+    /* max-width: 800px;  */
+    width: 90%;
+    text-align: left;
+    margin: 20px auto; 
+}
+
+.title {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align:left;
+}
+
+.form-group input,
+.form-group select {
+    width: calc(50% - 10px); 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    box-sizing: border-box; 
+    font-size: 16px;
+    margin-bottom: 10px; 
+    height: 50px;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px; 
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-container button {
+    background-color: #4CAF50; 
+    color: white; 
+    border: none;
+    border-radius: 5px;
+    padding: 14px 24px; 
+    margin: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px; 
+}
+
+.button-container button:hover {
+    background-color: #45a049; 
+}
+
+input[type="text"],
+input[type="date"] {
+    background-color: #ffffff; 
+    border: 1px solid #ccc; 
+    padding: 8px; 
+    margin-bottom: 10px; 
+}
+
+input[type="text"]:hover,
+input[type="date"]:hover {
+    background-color: #e0f7fa; 
+    transition: background-color 0.3s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    font-size: 1.2em; /* Adjust the font size to increase the size of the date picker icon */
+    padding: 0.5em; /* Add padding to increase the clickable area */
+    background-color: transparent; /* Set background color to transparent */
+    color: inherit; /* Inherit color from parent */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    outline: none; /* Remove default focus outline */
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.search-table{
+  overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Add this CSS to your existing search.css file */
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-group div {
+    flex: 0 0 calc(33.33% - 10px);
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    flex: 0 0 100%;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%; 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    box-sizing: border-box; 
+    font-size: 16px;
+    margin-bottom: 10px; 
+    height: 50px;
+}
+
+.button-search {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.search-table {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: auto;
+  white-space: nowrap;
+  /* Adjust the height of the scrollbar */
+  max-height: 600px; /* Example height */
+  min-height: 0px;
+}
+
+.search-table::before,
+.search-table::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px; /* Height of the scrollbar */
+  background-color: #f2f2f2; /* Scrollbar color */
+  z-index: 1;
+}
+
+.search-table::before {
+  top: 0;
+}
+
+.search-table::after {
+  bottom: 0;
+}
+
+.search-table::before::-webkit-scrollbar,
+.search-table::after::-webkit-scrollbar {
+  display: none; /* Hide the default scrollbar */
+}
+
+.search-table::before::-webkit-scrollbar-thumb,
+.search-table::after::-webkit-scrollbar-thumb {
+  background-color: #4caf50; /* Scrollbar thumb color */
+}
